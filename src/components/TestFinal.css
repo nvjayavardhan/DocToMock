@@ -1,0 +1,124 @@
+.body {
+    display: flex;
+    justify-content: center;
+    justify-content: space-evenly;
+    align-items: center;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    flex-direction: row;
+    background: rgb(1, 68, 149);
+    height: 70px;
+    flex-wrap: wrap; /* Ensure wrapping on smaller screens */
+}
+
+.inputBox {
+    position: relative;
+    width: 100%; /* Make input boxes full width on smaller screens */
+    max-width: 250px; /* Limit maximum width on larger screens */
+    margin: 5px; /* Add margin for spacing */
+}
+
+.inputBox input {
+    width: 100%; /* Ensure inputs take full width of parent */
+    padding: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: rgb(1, 68, 149);
+    border-radius: 5px;
+    outline: none;
+    color: #fff;
+    font-size: 1em;
+}
+
+.inputBox span {
+    position: absolute;
+    left: 10px; /* Adjust padding */
+    padding: 10px;
+    pointer-events: none;
+    font-size: 1em;
+    color: rgba(255, 255, 255, 0.25);
+    transition: 0.5s;
+}
+
+.inputBox input:valid~span,
+.inputBox input:focus~span {
+    color: #00dfc4;
+    transform: translateX(10px) translateY(-7px);
+    font-size: 0.65em;
+    text-transform: uppercase;
+    padding: 0 10px;
+    border-left: 1px solid #00dfc4;
+    border-right: 1px solid #00dfc4;
+}
+
+.dropbtn {
+    width: 100%; /* Ensure button takes full width of parent */
+    padding: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: rgb(1, 68, 149);
+    border-radius: 5px;
+    outline: none;
+    color: rgba(255, 255, 255, 0.25);
+    font-size: 1em;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    width: 100%; /* Ensure dropdown takes full width of parent */
+    max-width: 250px; /* Limit maximum width on larger screens */
+    margin: 5px; /* Add margin for spacing */
+}
+
+.dropdown-content {
+    position: absolute;
+    width: 100%; /* Ensure dropdown content takes full width of parent */
+    max-width: 230px; /* Limit maximum width on larger screens */
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    background-color: rgb(1, 68, 149);
+    border-radius: 10px;
+    padding: 10px;
+    z-index: 1;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: rgba(255, 255, 255, 0.25);
+}
+
+.button70 {
+    margin-left: 0px; /* Remove fixed margin */
+    margin: 5px; /* Add margin for spacing */
+    width: 100%; /* Ensure button takes full width of parent */
+    max-width: 200px; /* Limit maximum width on larger screens */
+    height: 40px;
+    padding: 0px;
+    border: mediumspringgreen solid 0.15em;
+    background: rgb(1, 68, 149);
+    border-radius: 0.25em;
+    outline: none;
+    color: mediumspringgreen;
+    font-size: 1.5em;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+    .body {
+        flex-direction: column; /* Stack elements vertically on smaller screens */
+        height: auto; /* Adjust height */
+    }
+
+    .inputBox, .dropdown, .button70 {
+        max-width: 100%; /* Ensure full width on smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .inputBox input, .dropbtn, .button70 {
+        font-size: 0.85em; /* Adjust font size on very small screens */
+    }
+
+    .inputBox span {
+        font-size: 0.75em; /* Adjust label font size on very small screens */
+    }
+}

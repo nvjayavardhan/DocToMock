@@ -1,0 +1,75 @@
+/* General styles for the navbar */
+.navbar {
+    background-color: white;
+  }
+  
+  /* Navbar link styles */
+  .navbar-nav .nav-link {
+    font-weight: bolder;
+    color: #014495;
+    position: relative;
+    transition: color 0.1s ease;
+    padding: 8px 16px; /* Add padding for better spacing */
+  }
+  
+  /* Sliding bar effect for navbar links (large screens only) */
+  @media (min-width: 992px) {
+    .navbar-nav .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background-color: #000000;
+      transition: width 0.3s ease, left 0.3s ease;
+    }
+  
+    .navbar-nav .nav-link:hover::after,
+    .navbar-nav .nav-link:focus::after {
+      width: 100%;
+      left: 0;
+    }
+  
+    .navbar-nav .nav-link.active::after {
+      width: 100%;
+      left: 0;
+    }
+  }
+  
+  /* Button hover effect */
+  .lg-btn:hover {
+    background-color: #014495 !important;
+    color: #FFFFFF !important;
+  }
+  
+  /* Navbar collapse button */
+  .navbar-toggler {
+    border: none;
+    outline: none;
+  }
+  
+  /* Adjustments for the collapse menu */
+  .collapse .navbar-nav {
+    padding: 10px;
+    background-color: white;
+    border-radius: 5px;
+  }
+  
+  /* Additional padding for navbar links inside the toggle menu */
+  @media (max-width: 991.98px) {
+    .navbar-nav .nav-link {
+      padding: 12px 20px;
+      margin: 5px 0;
+    }
+  }
+  
+  /* Image size for the brand logo */
+  .navbar-brand img {
+    width: 150px;
+  }
+  
+  #carousel {
+    max-height: 500px;
+  }
+  
