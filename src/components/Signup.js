@@ -53,7 +53,7 @@ function Signup() {
       navigate("/");
       return;
     }
-    const response = await fetch("http://localhost:5000/api/auth/newTeacher", {
+    const response = await fetch("https://doctomock.onrender.com/api/auth/newTeacher", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -101,7 +101,7 @@ function Signup() {
       navigate("/");
       return;
     }
-    const response = await fetch("http://localhost:5000/api/auth/newStudent", {
+    const response = await fetch("https://doctomock.onrender.com/api/auth/newStudent", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

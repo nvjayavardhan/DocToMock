@@ -30,7 +30,7 @@ const MockTest = () => {
 
         const fetchUserData = async () => {
           try {
-            const response = await fetch('http://localhost:5000/api/auth/getUserDetails', {
+            const response = await fetch('https://doctomock.onrender.com/api/auth/getUserDetails', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
@@ -60,7 +60,7 @@ const MockTest = () => {
       const token = localStorage.getItem('token');
       if (token) {
         try {
-          const response = await fetch('http://localhost:5000/api/auth/getTestResultsByStudentName', {
+          const response = await fetch('https://doctomock.onrender.com/api/auth/getTestResultsByStudentName', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -89,7 +89,7 @@ const MockTest = () => {
     } else {
       const fetchQuestions = async () => {
         try {
-          const response = await fetch('http://localhost:5000/api/auth/getQuizDetails', {
+          const response = await fetch('https://doctomock.onrender.com/api/auth/getQuizDetails', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -274,7 +274,7 @@ const MockTest = () => {
   const confirmSubmitTest = async () => {
     const finalScore = calculateScore(selectedOptions);
     try {
-      const response = await fetch('http://localhost:5000/api/auth/submitQuiz', {
+      const response = await fetch('https://doctomock.onrender.com/api/auth/submitQuiz', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

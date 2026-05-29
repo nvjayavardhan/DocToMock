@@ -102,7 +102,7 @@ function TestFinal() {
             uniqueCode: newUniqueCode
         });
         try {
-            const response = await axios.post("http://localhost:5000/api/auth/createQuiz", {
+            const response = await axios.post("https://doctomock.onrender.com/api/auth/createQuiz", {
                 teacherEmail: teacherEmail,
                 quizTitle: quizTitle,
                 quizTime: quizTime,
@@ -129,7 +129,7 @@ function TestFinal() {
             return;
         }
         try {
-            const response = await axios.post("http://localhost:5000/api/auth/quizzes", {
+            const response = await axios.post("https://doctomock.onrender.com/api/auth/quizzes", {
                 teacherEmail: localStorage.getItem('userEmail')
             });
             const quizzes = response.data;

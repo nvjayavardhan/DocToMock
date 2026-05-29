@@ -16,7 +16,7 @@ const MyTest = () => {
                     const decodedToken = jwtDecode(token);
                     const studentId = decodedToken.user.id;
 
-                    const userDetailsResponse = await fetch('http://localhost:5000/api/auth/getUserDetails', {
+                    const userDetailsResponse = await fetch('https://doctomock.onrender.com/api/auth/getUserDetails', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -32,7 +32,7 @@ const MyTest = () => {
                     const userDetails = await userDetailsResponse.json();
                     setUserName(userDetails.name);
 
-                    const testResultsResponse = await fetch('http://localhost:5000/api/auth/getTestResultsByStudentName', {
+                    const testResultsResponse = await fetch('https://doctomock.onrender.com/api/auth/getTestResultsByStudentName', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',

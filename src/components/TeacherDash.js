@@ -23,7 +23,7 @@ export default function App() {
           const decodedToken = jwtDecode(token);
           const userId = decodedToken.user.id;
 
-          const userDetailsResponse = await fetch('http://localhost:5000/api/auth/getUserDetails', {
+          const userDetailsResponse = await fetch('https://doctomock.onrender.com/api/auth/getUserDetails', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -39,7 +39,7 @@ export default function App() {
           const userDetails = await userDetailsResponse.json();
           setUserName(userDetails.name);
 
-          const quizzesResponse = await fetch('http://localhost:5000/api/auth/quizzes', {
+          const quizzesResponse = await fetch('https://doctomock.onrender.com/api/auth/quizzes', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -89,7 +89,7 @@ export default function App() {
   const handleDeleteQuiz = async (uniqueCode) => {
     const token = localStorage.getItem('token');
     try {
-      const response = await fetch('http://localhost:5000/api/auth/deleteQuiz', {
+      const response = await fetch('https://doctomock.onrender.com/api/auth/deleteQuiz', {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

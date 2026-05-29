@@ -10,7 +10,7 @@ const Analytics = () => {
   useEffect(() => {
     const fetchAnalyticsData = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/api/auth/getTestResults?uniqueCode=${uniqueCode}`);
+        const response = await fetch(`https://doctomock.onrender.com/api/auth/getTestResults?uniqueCode=${uniqueCode}`);
         const data = await response.json();
         console.log(data)
         setAnalyticsData(data);
