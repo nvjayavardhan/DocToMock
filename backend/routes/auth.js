@@ -11,6 +11,117 @@ const Teacher = require('../models/Teacher');
 const TestResult = require('../models/TestResult');
 const jwtSecret = "HaHa"
 
+const DEFAULT_AI_BASE_URL = 'https://api.groq.com/openai/v1';
+const DEFAULT_AI_MODEL = 'llama-3.3-70b-versatile';
+
+const buildMcqPrompt = (content, sourceType = 'passage') => {
+    const sourceLabel = sourceType === 'keyword' ? 'keyword' : 'passage';
+
+    return `Please generate 10 multiple-choice questions in the below format:
+[question_number]. [question]?
+A) [option_1]
+B) [option_2]
+C) [option_3]
+D) [option_4]
+Answer : [Answer for above mcq i.e. A or B or C or D]
+
+Do not provide any additional information or context.
+Generate questions based on the following ${sourceLabel}:
+${content}`;
+};
+
+const parseMcqResponse = (textItems) => {
+    const lines = textItems.split('\n');
+    let currentQuestion = '';
+    let options = [];
+    const questions = [];
+    const answers = [];
+
+    const questionRegex = /^\d+[.)]\s*(.+)$/;
+    const optionRegex = /^[A-D][).]\s*(.+)$/i;
+    const answerRegex = /^Answer\s*:\s*([A-D])/i;
+
+    const pushQuestion = () => {
+        if (currentQuestion && options.length === 4) {
+            questions.push({
+                question: currentQuestion,
+                options: [...options]
+            });
+        }
+    };
+
+    lines.forEach((line) => {
+        const text = line.replace(/_/g, '').replace(/[^\x20-\x7E]/g, '').trim();
+
+        if (!text) return;
+
+        const questionMatch = text.match(questionRegex);
+        if (questionMatch) {
+            pushQuestion();
+            currentQuestion = questionMatch[1].trim();
+            options = [];
+            return;
+        }
+
+        if (optionRegex.test(text)) {
+            options.push(text);
+            return;
+        }
+
+        const answerMatch = text.match(answerRegex);
+        if (answerMatch) {
+            answers.push(answerMatch[1].toUpperCase());
+        }
+    });
+
+    pushQuestion();
+
+    return { questions, Answers: answers };
+};
+
+router.post('/generateMcqs', async (req, res) => {
+    try {
+        const { content, sourceType = 'passage' } = req.body;
+        const apiKey = process.env.GROQ_API_KEY || process.env.OPENAI_API_KEY;
+        const baseURL = process.env.OPENAI_BASE_URL || DEFAULT_AI_BASE_URL;
+        const model = process.env.OPENAI_MODEL || DEFAULT_AI_MODEL;
+
+        if (!content || !content.trim()) {
+            return res.status(400).json({ error: 'Content is required' });
+        }
+
+        if (!apiKey) {
+            return res.status(500).json({ error: 'Missing GROQ_API_KEY or OPENAI_API_KEY on the server' });
+        }
+
+        const prompt = buildMcqPrompt(content, sourceType);
+        const response = await axios.post(
+            `${baseURL.replace(/\/$/, '')}/chat/completions`,
+            {
+                model,
+                messages: [
+                    { role: 'system', content: 'You are an MCQ generator.' },
+                    { role: 'user', content: prompt }
+                ]
+            },
+            {
+                headers: {
+                    Authorization: `Bearer ${apiKey}`,
+                    'Content-Type': 'application/json'
+                }
+            }
+        );
+
+        const generatedText = response.data?.choices?.[0]?.message?.content || '';
+        const parsedResponse = parseMcqResponse(generatedText);
+
+        res.status(200).json(parsedResponse);
+    } catch (error) {
+        console.error('Error generating MCQs:', error.response?.data || error.message);
+        res.status(500).json({ error: 'Failed to generate MCQs' });
+    }
+});
+
 
 router.post('/newStudent', [
     // Validation middleware
