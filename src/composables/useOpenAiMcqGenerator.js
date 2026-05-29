@@ -17,7 +17,11 @@ const openAiClient = apiKey
 
 export const buildMcqPrompt = (content, sourceType = 'passage') => {
   const sourceLabel = sourceType === 'keyword' ? 'keyword' : 'passage';
-
+  export const buildMcqPrompt = (content, sourceType = 'passage') => {
+  console.log(
+  "API KEY PREFIX:",
+  process.env.GROQ_API_KEY?.slice(0, 6)
+);
   return `Please generate 10 multiple-choice questions in the below format:
 [question_number]. [question]?
 A) [option_1]
