@@ -6,14 +6,12 @@ import InfoIcon from '@mui/icons-material/Info';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import DeleteIcon from '@mui/icons-material/Delete';
 import {jwtDecode} from 'jwt-decode'; // Corrected import for jwt-decode
-import Navbar from './Navbar';
 
 export default function App() {
   const [quizzes, setQuizzes] = useState([]);
   const [alertVisible, setAlertVisible] = useState(false);
   const [infoVisible, setInfoVisible] = useState(false);
   const [userName, setUserName] = useState('');
-  const [userEmail, setUserEmail] = useState('');
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -40,7 +38,6 @@ export default function App() {
 
           const userDetails = await userDetailsResponse.json();
           setUserName(userDetails.name);
-          setUserEmail(userDetails.email);
 
           const quizzesResponse = await fetch('http://localhost:5000/api/auth/quizzes', {
             method: 'POST',

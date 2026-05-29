@@ -4,8 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios';
 import { Snackbar, Alert } from '@mui/material';
-import Navbar from './Navbar';
-import Footer from './Footer';
 import { removeQna } from './qnaSlice';
 import './TestFinal.css';
 
@@ -14,7 +12,6 @@ function TestFinal() {
     const [quizTime, setQuizTime] = useState('');
     const [posMark, setPosMark] = useState('');
     const [negMark, setNegMark] = useState('');
-    const [quizNameExists, setQuizNameExists] = useState(false); 
     const dispatch = useDispatch();
     const [questions, setQuestions] = useState([]);
     const [answers, setAnswers] = useState([]);
@@ -32,7 +29,7 @@ function TestFinal() {
         if (questions1 && questions1.length === 0) {
             navigate('/createtest');
         }
-    }, []); // Empty dependency array ensures this runs only once on mount
+    }, [questions1, navigate]);
 
     useEffect(() => {
         if (questions1 && questions1.length > 0) {
@@ -138,11 +135,9 @@ function TestFinal() {
             const quizzes = response.data;
             const existingQuiz = quizzes.find(quiz => quiz.quizTitle === quizTitle);
             if (existingQuiz) {
-                setQuizNameExists(true);
                 setSnackbarMessage("Quiz name already exists");
                 setShowSnackbar(true);
             } else {
-                setQuizNameExists(false);
                 sendToBackend(); // Proceed with sending data to the backend if quiz name doesn't exist
             }
         } catch (error) {

@@ -12,7 +12,7 @@ const MockTest = () => {
   const [neg, setNegative] = useState(0);
   const [title, setTitle] = useState("");
   const [selectedOptions, setSelectedOptions] = useState({});
-  const [score, setScore] = useState(0);
+  const [, setScore] = useState(0);
   const [timeLeft, setTimeLeft] = useState(0);
   const [isTestStarted, setIsTestStarted] = useState(false);
   const { uniqueCode } = useParams();
@@ -20,7 +20,6 @@ const MockTest = () => {
   const [showSubmitConfirmation, setShowSubmitConfirmation] = useState(false);
   const [studentName, setStudentName] = useState("");
   const [testResults, setTestResults] = useState([]);
-  const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -61,8 +60,6 @@ const MockTest = () => {
       const token = localStorage.getItem('token');
       if (token) {
         try {
-          const decodedToken = jwtDecode(token);
-          const userId = decodedToken.user.id;
           const response = await fetch('http://localhost:5000/api/auth/getTestResultsByStudentName', {
             method: 'POST',
             headers: {
@@ -241,16 +238,6 @@ const MockTest = () => {
     setSelectedOptions(newSelectedOptions);
     updateQuestionStatus(currentQuestion, 'viewed');
     calculateScore(newSelectedOptions);
-  };
-
-  const resetQuiz = () => {
-    setCurrentQuestion(0);
-    setSelectedOptions({});
-    setScore(0);
-    setTimeLeft(0);
-    setQuestions([]);
-    setIsTestStarted(false);
-    navigate('/');
   };
 
   const addLeadingZero = (number) => (number > 9 ? `${number}` : `0${number}`);

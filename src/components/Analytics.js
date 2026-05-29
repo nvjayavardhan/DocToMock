@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { TableContainer, Table, TableHead, TableBody, TableRow, TableCell, Paper } from '@mui/material';
 import { useParams } from 'react-router-dom';
-import Navbar from './Navbar';
 
 const Analytics = () => {
   const { uniqueCode } = useParams(); // Retrieve uniqueCode from URL parameters

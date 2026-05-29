@@ -35,7 +35,7 @@ function CreateTest() {
                     </Link>
                     <Link to='/imagereader'>
                         <div className="card2">
-                            <img className='svg' src={imgicon} alt="Image to Mock" />
+                            <img className='svg' src={imgicon} alt="Visual upload to Mock" />
                             <div className="card__content2">
                                 <p className="card__title2">IMAGE to MOCK</p>
                                 <p className="card__description2">Generate mock tests from images with ease.</p>

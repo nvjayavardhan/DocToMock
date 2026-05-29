@@ -3,7 +3,6 @@ import { Form } from 'react-bootstrap';
 import axios from 'axios';
 import { Box, Typography, TextField, Container, Paper, Button } from '@mui/material';
 import { jwtDecode } from 'jwt-decode';
-import Navbar from './Navbar';
 import QuizDetailsPopup from './QuizDetailsPopup';
 
 export default function EnterCode() {
@@ -11,7 +10,6 @@ export default function EnterCode() {
   const [showPopup, setShowPopup] = useState(false);
   const [quizDetails, setQuizDetails] = useState(null);
   const [error, setError] = useState(false);
-  const [userName, setUserName] = useState('');
   const [testResults, setTestResults] = useState([]);
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -37,7 +35,6 @@ export default function EnterCode() {
           }
 
           const userDetails = await userDetailsResponse.json();
-          setUserName(userDetails.name);
 
           const testResultsResponse = await fetch('http://localhost:5000/api/auth/getTestResultsByStudentName', {
             method: 'POST',

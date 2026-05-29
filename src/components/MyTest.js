@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { jwtDecode } from 'jwt-decode';
-import Navbar from './Navbar';
 import { Table,Box, TableContainer, TableHead, TableRow, TableCell, TableBody, Paper, Typography, CircularProgress } from '@mui/material';
-import Loading from './Loading';
 
 const MyTest = () => {
     const [testResults, setTestResults] = useState([]);

@@ -71,8 +71,10 @@ function AppRoutes() {
 
   const publicRoutes = ['/', '/login', '/signup'];
   const isPublicRoute = publicRoutes.includes(location.pathname);
-  const isAccessibleRoute = userRole && (userRole === 'teacher' && location.pathname.startsWith('/teacher') ||
-                                          userRole === 'student' && location.pathname.startsWith('/mocktest'));
+  const isAccessibleRoute = userRole && (
+    (userRole === 'teacher' && location.pathname.startsWith('/teacher')) ||
+    (userRole === 'student' && location.pathname.startsWith('/mocktest'))
+  );
 
   if (userRole === null && !isPublicRoute && !isAccessibleRoute) {
     // Render nothing or a loading spinner while the user role is being loaded

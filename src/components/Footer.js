@@ -20,15 +20,15 @@ const Footer = () => {
 
         <Col xs="auto" md="auto" className="d-flex align-items-center">
           <div>
-            <a href="#" className="p-2">
+            <button type="button" aria-label="Twitter" className="p-2" style={{ border: 0, background: 'transparent' }}>
               <FontAwesomeIcon icon={faTwitter} style={{ color: "#014495" }} className="footer-social-icon" />
-            </a>
-            <a href="#" className="mx-3 p-2">
+            </button>
+            <button type="button" aria-label="Facebook" className="mx-3 p-2" style={{ border: 0, background: 'transparent' }}>
               <FontAwesomeIcon icon={faFacebook} style={{ color: "#014495" }} className="footer-social-icon" />
-            </a>
-            <a href="#" className="p-2">
+            </button>
+            <button type="button" aria-label="Instagram" className="p-2" style={{ border: 0, background: 'transparent' }}>
               <FontAwesomeIcon icon={faInstagram} style={{ color: "#014495" }} className="footer-social-icon" />
-            </a>
+            </button>
           </div>
         </Col>
 
