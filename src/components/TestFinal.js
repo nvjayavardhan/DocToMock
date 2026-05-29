@@ -26,12 +26,6 @@ function TestFinal() {
     const answers1 = useSelector(state => state.qna.answers);
 
     useEffect(() => {
-        if (questions1 && questions1.length === 0) {
-            navigate('/createtest');
-        }
-    }, []);
-
-    useEffect(() => {
         if (questions1 && questions1.length > 0) {
             setQuestions(questions1);
             setAnswers(answers1);
