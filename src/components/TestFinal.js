@@ -29,7 +29,7 @@ function TestFinal() {
         if (questions1 && questions1.length === 0) {
             navigate('/createtest');
         }
-    }, [questions1, navigate]);
+    }, []);
 
     useEffect(() => {
         if (questions1 && questions1.length > 0) {
