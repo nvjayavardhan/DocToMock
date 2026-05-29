@@ -1,6 +1,6 @@
  // db.js
 const mongoose = require('mongoose');
-const mongoURI = 'mongodb+srv://user_team7:user_team7@cluster1.wli3dyw.mongodb.net/pdfReader?retryWrites=true&w=majority&appName=Cluster1';
+const mongoURI = process.env.MONGO_URI;
 
 module.exports = async function () {
     try {

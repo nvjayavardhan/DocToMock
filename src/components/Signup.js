@@ -27,6 +27,7 @@ function Signup() {
       newErrors.email = "Enter a valid email";
     }
     setErrors(newErrors);
+    console.log(Object.keys(newErrors).length)
     return Object.keys(newErrors).length === 0;
   };
 

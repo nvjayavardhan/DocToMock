@@ -222,16 +222,21 @@ function TestFinal() {
                     <>
                         <h2>Generated Questions and Answers:</h2>
                         {questions.map((item, index) => (
-                            <div key={index}>
-                                <p><strong>Question: </strong>{item.question}</p>
-                                <ul>
-                                    {item.options.map((option, i) => (
-                                        <li key={i}>{option}</li>
-                                    ))}
-                                </ul>
-                                <p><strong>Answer: </strong>{answers[index]}</p> {/* Display answer corresponding to the question */}
-                            </div>
-                        ))}
+    <div key={item.question}>
+        <p><strong>Question: </strong>{item.question}</p>
+
+        <ul>
+            {item.options.map((option) => (
+                <li key={option}>{option}</li>
+            ))}
+        </ul>
+
+        <p>
+            <strong>Answer: </strong>
+            {answers[index]}
+        </p>
+    </div>
+))}
                     </>
                 </div>
             </div>
