@@ -17,7 +17,7 @@ const DEFAULT_AI_MODEL = 'llama-3.3-70b-versatile';
 const buildMcqPrompt = (content, sourceType = 'passage') => {
     const sourceLabel = sourceType === 'keyword' ? 'keyword' : 'passage';
 
-    return `Please generate 10 multiple-choice questions in the below format:
+    return `Please generate ${sourceLabel === 'keyword' ? '10' : ''} multiple-choice questions in the below format:
 [question_number]. [question]?
 A) [option_1]
 B) [option_2]
