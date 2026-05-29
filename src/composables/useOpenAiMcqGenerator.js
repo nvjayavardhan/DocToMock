@@ -4,7 +4,7 @@ import OpenAI from 'openai';
 const DEFAULT_BASE_URL = 'https://api.groq.com/openai/v1';
 const DEFAULT_MODEL = 'llama-3.3-70b-versatile';
 
-const apiKey = process.env.GROQ_API_KEY;
+const apiKey = process.env.REACT_APP_GROQ_API_KEY;
 const baseURL = process.env.REACT_APP_OPENAI_BASE_URL || DEFAULT_BASE_URL;
 
 const openAiClient = apiKey
@@ -80,10 +80,6 @@ export const parseMcqResponse = (textItems) => {
 };
 
 const useOpenAiMcqGenerator = (options = {}) => {
-  console.log(
-  "API KEY PREFIX:",
-  process.env.GROQ_API_KEY?.slice(0, 6)
-);
   const model = options.model || process.env.REACT_APP_OPENAI_MODEL || DEFAULT_MODEL;
   const client = useMemo(() => openAiClient, []);
 
